@@ -14,6 +14,11 @@
 
 using namespace std;
 
+void clean(double a[])
+{
+	delete [] a;
+};
+
 int main()
 {
 	ifstream in_stream;
@@ -24,7 +29,11 @@ int main()
 
 	const int nSize = 100;
 	double arValues[nSize];
-	double arInValues[nSize];
+	// double arInValues[nSize];
+
+	typedef double* doublePtr;
+	doublePtr arInValuesDynamic;
+	arInValuesDynamic = new double [nSize-3];
 
 	in_stream.open("infile.dat");
 
@@ -33,7 +42,8 @@ int main()
 	int i= 0;
 	while(in_stream >> qIn)
 	{
-		arInValues[i] = qIn;
+		// arInValues[i] = qIn;
+		arInValuesDynamic[i] = qIn;
 		i++;
 	}
 
@@ -55,7 +65,11 @@ int main()
 	out_stream.close();
 
 	cout << "rValue " << rValue << endl;
-	cout << "arInValues_3 " << arInValues[3] << endl;
+	// cout << "arInValues_3 " << arInValues[3] << endl;
+	cout << "arInValuesDynamic_3 " << arInValuesDynamic[3] << endl;
+
+	clean(arInValuesDynamic);
+
 	cout << "!!!All calculations completed!!!" << endl;
 
 	return 0;
