@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "SimpleRNG.h"
 
 using namespace std;
@@ -21,6 +22,8 @@ void clean(double a[])
 
 int main()
 {
+	std::vector<int> vec1(4,100); // five ints with value 100
+
 	ifstream in_stream;
 	ofstream out_stream;
 
@@ -36,6 +39,20 @@ int main()
 	arInValuesDynamic = new double [nSize-3];
 
 	in_stream.open("infile.dat");
+
+	cout << "size of vec1 before " << vec1.size() << endl;
+
+	vec1.push_back(5);
+	vec1[5] = 45;
+
+	cout << "vec1 capacity " << vec1.capacity() <<endl;
+
+	cout << "all values of vec1" << endl;
+	for(unsigned int i = 0; i < vec1.size(); i++)
+	{
+		cout << " " << vec1[i] << endl;
+	}
+	cout << " " << endl;
 
 	double qIn;
 
